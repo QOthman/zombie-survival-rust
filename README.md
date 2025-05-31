@@ -40,6 +40,13 @@ A 2D zombie survival game built with [Macroquad](https://github.com/not-fl3/macr
 
 ---
 
+## 🎮 Play Online
+**[🚀 Play Zombie Survival Now!](https://qothman.github.io/zombie-survival-rust/)**
+
+Experience the game instantly in your browser - no downloads required!
+
+---
+
 ## 🚀 Getting Started
 
 ### Prerequisites
@@ -63,6 +70,20 @@ cargo build --release --target wasm32-unknown-unknown
 basic-http-server .
 ```
 
+### Deploying to GitHub Pages
+1. **Build the WASM version** (see above)
+2. **Create `docs/` folder** in your repository root
+3. **Copy these files to `docs/`:**
+   ```
+   docs/
+   ├── index.html
+   ├── zombie_survival.wasm
+   ├── zombie_survival.js
+   └── assets/ (if any)
+   ```
+4. **Enable GitHub Pages** in repository settings → Pages → Source: Deploy from a branch → `main` → `/docs`
+5. **Access your game** at `https://yourusername.github.io/repository-name/`
+
 ---
 
 ## 🛠 Built With
@@ -76,11 +97,6 @@ basic-http-server .
 * `Space` — Shoot
 * `R` — Restart after death
 * `Esc` — Quit game
-
----
-
-## 📦 License
-This project is open source under the [MIT License](LICENSE).
 
 ---
 
