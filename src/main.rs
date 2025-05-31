@@ -9,25 +9,25 @@ use weather::{Raindrop, Splash, LightningManager};
 use player::Player;
 use enemy::EnemyManager;
 
-#[macroquad::main("Rainstorm with Lightning")]
+#[macroquad::main("zombie survival game")]
 async fn main() {
-    let idle_texture = load_texture("./assets/player/Idle.png").await.unwrap();
-    let walk_texture = load_texture("./assets/player/Walk.png").await.unwrap();
-    let run_texture = load_texture("./assets/player/Run.png").await.unwrap();
-    let shot_texture = load_texture("./assets/player/Shot.png").await.unwrap();
-    let recharge_texture = load_texture("./assets/player/Recharge.png").await.unwrap();
-    let death_texture = load_texture("./assets/player/Dead.png").await.unwrap();
-    let enemy_texture = load_texture("./assets/enemy/Walk.png").await.unwrap();
-    let enemy_death_texture = load_texture("./assets/enemy/Death.png").await.unwrap();
-    let enemy_attack_texture = load_texture("./assets/enemy/Attack.png").await.unwrap();
-    let ammo_texture = load_texture("./assets/game/ammo.png").await.unwrap();
+    let idle_texture = load_texture("assets/player/Idle.png").await.unwrap();
+    let walk_texture = load_texture("assets/player/Walk.png").await.unwrap();
+    let run_texture = load_texture("assets/player/Run.png").await.unwrap();
+    let shot_texture = load_texture("assets/player/Shot.png").await.unwrap();
+    let recharge_texture = load_texture("assets/player/Recharge.png").await.unwrap();
+    let death_texture = load_texture("assets/player/Dead.png").await.unwrap();
+    let enemy_texture = load_texture("assets/enemy/Walk.png").await.unwrap();
+    let enemy_death_texture = load_texture("assets/enemy/Death.png").await.unwrap();
+    let enemy_attack_texture = load_texture("assets/enemy/Attack.png").await.unwrap();
+    let ammo_texture = load_texture("assets/game/ammo.png").await.unwrap();
 
-    let rain_sound = load_sound("./assets/sound/rain.wav").await.unwrap();
-    let thunder_sound = load_sound("./assets/sound/thunder.wav").await.unwrap();
-    let shoot_sound = load_sound("./assets/sound/shoot.wav").await.unwrap();
-    let death_sound = load_sound("./assets/sound/player_death.wav").await.unwrap();
-    let zombie_attack_sound = load_sound("./assets/sound/zombie_attack.wav").await.unwrap();
-    let recharging_sound = load_sound("./assets/sound/recharging.wav").await.unwrap();
+    let rain_sound = load_sound("assets/sound/rain.wav").await.unwrap();
+    let thunder_sound = load_sound("assets/sound/thunder.wav").await.unwrap();
+    let shoot_sound = load_sound("assets/sound/shoot.wav").await.unwrap();
+    let death_sound = load_sound("assets/sound/player_death.wav").await.unwrap();
+    let zombie_attack_sound = load_sound("assets/sound/zombie_attack.wav").await.unwrap();
+    let recharging_sound = load_sound("assets/sound/recharging.wav").await.unwrap();
 
     play_sound(&rain_sound, PlaySoundParams { looped: true, volume: 0.5 });
 
@@ -76,8 +76,11 @@ async fn main() {
             if is_key_pressed(KeyCode::R) {
                 player = Player::new(idle_texture.clone(), walk_texture.clone(), run_texture.clone(), shot_texture.clone(), recharge_texture.clone(), death_texture.clone(),ammo_texture.clone(),shoot_sound.clone(), death_sound.clone(), recharging_sound.clone());
                 enemy_manager.reset();
-            }else if is_key_pressed(KeyCode::Escape) {
-                break;
+            }else {
+                #[cfg(not(target_arch = "wasm32"))]
+                if is_key_pressed(KeyCode::Escape) {
+                    break;
+                }
             }
 
         }

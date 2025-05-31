@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Macroquad WASM Game</title>
+  <style>
+    body { margin: 0; overflow: hidden; }
+    canvas { width: 100vw; height: 100vh; display: block; }
+  </style>
+</head>
+<body>
+  <canvas id="glcanvas" tabindex="0"></canvas>
+  <script src="https://not-fl3.github.io/miniquad-samples/mq_js_bundle.js"></script>
+  <script>
+    const gameCanvas = document.getElementById('glcanvas');
+    gameCanvas.focus();
+    load("zombie_survival_rust.wasm");
+  </script>
+</body>
+</html>

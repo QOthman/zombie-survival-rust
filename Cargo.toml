@@ -1,8 +1,9 @@
 [package]
-name = "rust_line_drawing"
+name = "zombie_survival_rust"
 version = "0.1.0"
 edition = "2021"
 
 [dependencies]
 macroquad = { version = "0.4", features = ["audio"] }
-rand = "0.9.1"
+rand = "0.8"
+getrandom = { version = "0.2.16", features = ["js"] }

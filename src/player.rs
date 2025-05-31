@@ -348,10 +348,14 @@ impl Player {
         let restart_y = title_y + 35.0;
         draw_text(restart, restart_x, restart_y, restart_size, WHITE);
 
-        let exit = "Press ESC to Exit";
-        let exit_width = measure_text(exit, None, restart_size as u16, 1.0).width;
-        let exit_x = (screen_w - exit_width) / 2.0;
-        let exit_y = restart_y + 25.0;
-        draw_text(exit, exit_x, exit_y, restart_size, WHITE);
+        #[cfg(not(target_arch = "wasm32"))]
+        {
+            let exit = "Press ESC to Exit";
+            let exit_width = measure_text(exit, None, restart_size as u16, 1.0).width;
+            let exit_x = (screen_w - exit_width) / 2.0;
+            let exit_y = restart_y + 25.0;
+            draw_text(exit, exit_x, exit_y, restart_size, WHITE);
+        }
+
     }
 }
